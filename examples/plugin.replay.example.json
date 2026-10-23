@@ -1,0 +1,32 @@
+{
+  "AssemblyPath": "C:\\path\\to\\your\\plugin\\bin\\Debug\\Your.Plugin.dll",
+  "PluginType": "Your.Plugin.UpdateAccount",
+  "MessageName": "Update",
+  "PrimaryEntityName": "account",
+  "PrimaryEntityId": "33333333-3333-3333-3333-333333333333",
+  "Stage": 20,
+  "Mode": 0,
+  "InputParameters": {
+    "Target": {
+      "Type": "entity",
+      "LogicalName": "account",
+      "Id": "33333333-3333-3333-3333-333333333333",
+      "Attributes": {
+        "name": { "Type": "string", "Value": "Synthetic local input" }
+      }
+    }
+  },
+  "PreImages": {
+    "Before": {
+      "Type": "entity",
+      "LogicalName": "account",
+      "Id": "33333333-3333-3333-3333-333333333333",
+      "Attributes": {
+        "name": { "Type": "string", "Value": "Synthetic previous input" }
+      }
+    }
+  },
+  "PostImages": {},
+  "SharedVariables": {},
+  "ExpectedOutputParameters": {}
+}

@@ -1,0 +1,9 @@
+{
+  "Connections": [
+    {
+      "Name": "Development",
+      "ConnectionString": "AuthType=ClientSecret;Url=https://YOUR-ORG.crm.dynamics.com;ClientId=YOUR-APP-ID;ClientSecret=YOUR-SECRET;",
+      "ExpectedOrganizationId": "00000000-0000-0000-0000-000000000000"
+    }
+  ]
+}

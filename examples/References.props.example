@@ -1,0 +1,9 @@
+<Project>
+  <ItemGroup>
+    <!-- Prefer the build output from your local checkout; never copy proprietary binaries into Git. -->
+    <Reference Include="Your.Plugin">
+      <HintPath>C:\path\to\your\plugin\bin\Debug\Your.Plugin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

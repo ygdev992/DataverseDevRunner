@@ -1,0 +1,27 @@
+{
+  "Scenarios": {
+    "Title": "Configurare e provare uno scenario",
+    "Steps": [
+      "Compila il plugin aggiornato nel suo progetto originale, con DLL e PDB corrispondenti.",
+      "Se servono riferimenti tipizzati alle DLL, configurali in local\\References.props.",
+      "Crea lo scenario C# in local\\Scenarios (sono ammesse sottocartelle), con Id univoco e verifiche context.Check.",
+      "Dichiara correttamente scritture ed effetti esterni; usa context.Service per il controllo delle operazioni SDK.",
+      "Chiudi e ricompila il runner dopo modifiche agli scenari o ai riferimenti.",
+      "Configura gli eventuali profili in local\\settings.json. Seleziona lo scenario, la modalita' e i parametri.",
+      "Per il debug avvia con F5 o collega il debugger al runner; imposta i breakpoint e conferma l'esecuzione."
+    ]
+  },
+  "PluginReplay": {
+    "Title": "Configurare e provare un Plugin Replay",
+    "Steps": [
+      "Compila il plugin aggiornato nel suo progetto originale, con DLL e PDB corrispondenti.",
+      "Copia examples\\plugin.replay.example.json in local\\Replays\\nome.replay.json (sono ammesse sottocartelle).",
+      "Configura AssemblyPath e PluginType. I percorsi DLL relativi sono risolti rispetto al JSON.",
+      "Configura messaggio, entita', stage, mode, parametri, immagini e output attesi secondo il caso e la registrazione reale.",
+      "Configura il profilo in local\\settings.json. Seleziona il replay dall'elenco, senza digitare il percorso.",
+      "Per il debug avvia con F5 o collega il debugger al runner; imposta i breakpoint e conferma connessione ed esecuzione.",
+      "I JSON vengono riletti senza ricompilazione. Dopo modifiche alle DLL chiudi e riavvia il runner.",
+      "Il replay non salva automaticamente il Target; le chiamate del plugin a Dataverse o servizi esterni sono reali e non hanno rollback globale."
+    ]
+  }
+}

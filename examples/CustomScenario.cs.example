@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using DataverseDevRunner.ConsoleApp;
+using DataverseDevRunner.Core;
+using Microsoft.Xrm.Sdk;
+
+namespace LocalScenarios
+{
+    // Copy to local\Scenarios\CustomScenario.cs. These files are ignored by Git.
+    public sealed class CustomScenario : Scenario
+    {
+        public override string Id => "local.my-plugin";
+        public override string Description => "Plugin locale contro Dataverse reale.";
+        public override bool RequiresWriteAccess => false;
+        public override bool MayHaveExternalEffects => true;
+
+        public override IReadOnlyList<ScenarioParameter> Parameters => new[]
+        {
+            new ScenarioParameter("AssemblyPath", "Percorso assoluto DLL plugin"),
+            new ScenarioParameter("PluginType", "Nome completo del tipo plugin"),
+            new ScenarioParameter("RecordId", "GUID del record di sviluppo")
+        };
+
+        public override void Run(ScenarioContext context)
+        {
+            var recordId = Guid.Parse(context.Parameter("RecordId"));
+            if (recordId == Guid.Empty)
+                throw new ArgumentException("RecordId non puo' essere vuoto.");
+
+            var plugin = LocalPluginLoader.Load(context.Parameter("AssemblyPath"), context.Parameter("PluginType"));
+            var execution = context.NewPluginContext("Update", "account", stage: 20);
+            execution.PrimaryEntityId = recordId;
+            execution.InputParameters["Target"] = new Entity("account", recordId) { ["name"] = "Synthetic input" };
+            execution.PreEntityImages["Before"] = new Entity("account", recordId) { ["name"] = "Synthetic previous input" };
+
+            context.ExecutePlugin(plugin, execution);
+            // Add context.Check(...) assertions matching your actual acceptance criteria.
+        }
+    }
+}
